@@ -1,16 +1,14 @@
 package p;
-
 public class test1 {
-
-	public static void main(String [] args){
-		show(2,2);
-	}
-	public static void show(int a,int b){
-		for(int i=0;i<a;i++){
-			for(int j=0;j<b;j++){
-				System .out.print("*");
-			}
-			System.out.print("\n");
-		}
-	}
+    public static void main(String [] args){
+        show(2,2);
+    }
+    public static void show(int a,int b){
+        for(int i=0;i<a;i++){
+            for(int j=0;j<b;j++){
+                System .out.print("*");
+            }
+            System.out.print("\n");
+        }
+    }
 }
