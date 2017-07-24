@@ -1,0 +1,22 @@
+package API;
+
+public class test1 {
+	public static void main(String [] args){
+		String str1=new String();
+		String str2=new String ("   zpcslsas");
+		char [] charArray=new char [] {'D','E','F'};
+		String str3=new String (charArray);
+		System.out.println("a"+str1+"b");
+		System.out.println(str2);
+		System.out.println(str3.length());
+		System.out.println(str2.trim());
+		System.out.println(str2.charAt(0));
+		System.out.println(str2.indexOf('s'));
+		System.out.println(str2.lastIndexOf('s'));
+		System.out.println(str2.replace("pc", "ppcc"));
+		System.out.println(str2);
+		System.out.println(str2.startsWith("z"));
+		System.out.println(str2.equals(str3));
+	}
+
+}
