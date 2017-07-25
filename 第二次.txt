@@ -20,3 +20,61 @@ public class test1 {
 	}
 
 }
+
+
+
+
+
+package API;
+import java.util.*;
+public class test3 {
+	public static void main(String [] args){
+		Properties properties=System.getProperties();
+		Enumeration propertyNames=properties.propertyNames();
+		while (propertyNames.hasMoreElements()){
+			String key=(String)propertyNames.nextElement();
+			String value=System.getProperty(key);
+			System.out.println(key+"--->"+value);
+		}
+	}
+
+}
+
+
+
+
+package API;
+
+public class test4 {
+	public static void main(String [] args){
+		long starttime=System.currentTimeMillis();
+		long sum=0;
+		for(long i=0;i<1000000000;i++){
+			sum++;
+		}
+		long endtime=System.currentTimeMillis();
+		System.out.println(sum);
+		System.out.println(endtime-starttime);
+	}
+}
+
+
+
+
+
+package API;
+import java.io.*;
+public class test5 {
+	public static void main(String [] args) throws IOException{
+		Runtime rt=Runtime.getRuntime();
+		Process process=rt.exec("notepad.exe");
+		process.destroy();
+		System.out.println(rt.availableProcessors());
+		System.out.println(rt.freeMemory()/1024/1024);
+		System.out.println(rt.maxMemory()/1024/1024);
+	}
+}
+
+
+
+
