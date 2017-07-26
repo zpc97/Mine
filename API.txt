@@ -1,0 +1,138 @@
+package API;
+
+public class test1 {
+	public static void main(String [] args){
+		String str1=new String();
+		String str2=new String ("   zpcslsas");
+		char [] charArray=new char [] {'D','E','F'};
+		String str3=new String (charArray);
+		System.out.println("a"+str1+"b");
+		System.out.println(str2);
+		System.out.println(str3.length());
+		System.out.println(str2.trim());
+		System.out.println(str2.charAt(0));
+		System.out.println(str2.indexOf('s'));
+		System.out.println(str2.lastIndexOf('s'));
+		System.out.println(str2.replace("pc", "ppcc"));
+		System.out.println(str2);
+		System.out.println(str2.startsWith("z"));
+		System.out.println(str2.equals(str3));
+	}
+
+}
+
+
+
+
+
+package API;
+import java.util.*;
+public class test3 {
+	public static void main(String [] args){
+		Properties properties=System.getProperties();
+		Enumeration propertyNames=properties.propertyNames();
+		while (propertyNames.hasMoreElements()){
+			String key=(String)propertyNames.nextElement();
+			String value=System.getProperty(key);
+			System.out.println(key+"--->"+value);
+		}
+	}
+
+}
+
+
+
+
+package API;
+
+public class test4 {
+	public static void main(String [] args){
+		long starttime=System.currentTimeMillis();
+		long sum=0;
+		for(long i=0;i<1000000000;i++){
+			sum++;
+		}
+		long endtime=System.currentTimeMillis();
+		System.out.println(sum);
+		System.out.println(endtime-starttime);
+	}
+}
+
+
+
+
+
+package API;
+import java.io.*;
+public class test5 {
+	public static void main(String [] args) throws IOException{
+		Runtime rt=Runtime.getRuntime();
+		Process process=rt.exec("notepad.exe");
+		process.destroy();
+		System.out.println(rt.availableProcessors());
+		System.out.println(rt.freeMemory()/1024/1024);
+		System.out.println(rt.maxMemory()/1024/1024);
+	}
+}
+
+
+
+
+
+package API;
+
+public class test7 {
+	public static void main(String []  args){
+		int w=Integer.parseInt("10");
+		int h=Integer.parseInt("20");
+		for(int i=0;i<h;i++){
+			StringBuffer sb=new StringBuffer();
+			for(int j=0;j<w;j++){
+				sb.append("*");
+			}
+			System.out.println(sb.toString());
+		}
+	}
+
+}
+
+
+
+
+package API;
+import java.util.*;
+public class test8 {
+	public static void main(String [] args){
+		Date date1=new Date();
+		Date date2=new Date(966666666);
+		System.out.println(date1);
+		System.out.println(date2);
+	}
+
+}
+
+
+
+
+package API;
+import java.util.*;
+public class test9 {
+	public static void main(String [] args){
+		Calendar calendar=Calendar.getInstance();
+		calendar.set(2019, 9,9);
+		calendar.add(calendar.YEAR, 10);
+		int year=calendar.get(Calendar.YEAR);
+		int month=calendar.get(Calendar.MONTH);
+		int data=calendar.get(Calendar.DATE);
+		int hour=calendar.get(Calendar.HOUR);
+		int min=calendar.get(Calendar.MINUTE);
+		System.out.println(year+"年"+month+"月"+data+"日"+hour+"时"+min+"分");
+		
+		
+	}
+
+}
+
+
+
+

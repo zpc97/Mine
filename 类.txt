@@ -1,0 +1,88 @@
+package p;
+public class test1 {
+    public static void main(String [] args){
+        show(2,2);
+    }
+    public static void show(int a,int b){
+        for(int i=0;i<a;i++){
+            for(int j=0;j<b;j++){
+                System .out.print("*");
+            }
+            System.out.print("\n");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+package p;
+
+public class test2 {
+
+	public static void main(String [] args){
+		int [][]a=new int [3][];
+		a[0]=new int []{11,12};
+		a[1]=new int []{21,22,23};
+		a[2]=new int []{31,32,33,34};
+		int sum=0;
+		for(int i=0;i<a.length;i++){
+			int groupsum=0;
+			for(int j=0;j<a[i].length;j++){
+				groupsum=groupsum+a[i][j];
+			}
+			sum=sum+groupsum;
+			System.out.println("第"+(i+1)+"小组销售额为:"+groupsum+"万元");
+		}
+		System.out.println("总销售额为:"+sum+"万元");
+	}
+}
+
+
+
+
+
+
+package p;
+
+class person{
+	person(){
+		System.out.println("无参构造函数!!!");
+	}
+	person(int a){
+		this();
+		System.out.println("有参构造函数!!!");
+	}
+	int age;
+    void show(){
+		System.out.println(age);
+	}
+	void set(){
+		age=18;
+	}
+}
+
+public class test3 {
+
+	public  static void main(String [] args){
+	person p=new person(2);
+	p.set();
+	p.show();
+	
+	}
+}
+
+
+
+
+
+
+
+
+
+
