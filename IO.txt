@@ -1,0 +1,56 @@
+package IO;
+import java.io.*;
+public class test1 {
+	public static void main(String [] args) throws Exception{
+		FileInputStream in=new FileInputStream("D:/java±‡“Î/test/src/IO/test.txt");
+		int b=0;
+		while (true){
+			b=in.read();
+			if(b==-1){
+				break;
+			}
+			System.out.println(b);
+		}
+		in.close();
+	}
+}
+
+
+
+
+package IO;
+import java.io.*;
+public class test2 {
+	public static void main(String [] args) throws Exception{
+		FileOutputStream out=new FileOutputStream("D:/java±‡“Î/test/src/IO/output.txt",true);
+		String str="≥Ã";
+		byte[] b=str.getBytes();
+		for(int i=0;i<b.length;i++){
+			out.write(b[i]);
+		}
+		out.close();
+	}
+
+}
+
+
+
+
+package IO;
+import java.io.*;
+public class test3 {
+	public static void main(String [] args) throws Exception{
+		InputStream in=new FileInputStream("D:/java±‡“Î/test/src/IO/—Ó◊⁄Œ≥°¢’≈±Ã≥ø - ¡π¡π.mp3");
+		OutputStream out=new FileOutputStream("D:/java±‡“Î/test/src/—Ó◊⁄Œ≥°¢’≈±Ã≥ø - ¡π¡π.mp3");
+		int len;
+		long begintime=System.currentTimeMillis();
+		while((len=in.read())!=-1){
+			out.write( len);
+		}
+		long endtime =System.currentTimeMillis();
+		System.out.println("øΩ±¥Œƒº˛∫ƒ∑— ±º‰:"+(endtime- begintime)+"∫¡√Î");
+		in.close();
+		out.close();
+	}
+
+}
