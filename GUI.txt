@@ -1,0 +1,103 @@
+package test;
+
+public class test1 {
+	public static void main(String [] args){
+		person p1=new person();
+		p1.speak();
+		p1.jisuan();
+		p1.jisuan(10);
+	}
+
+}
+class person{
+	int sum1=0,i,sum2=0;
+	void speak(){
+		System.out.println("我是个好人!!!");
+	}
+	void jisuan(){
+		for( i=1;i<10000;i++){
+			sum1+=i;
+		}
+		System.out.println(sum1);
+	}
+	void jisuan(int n){
+		for( i=1;i<n;i++){
+			sum2+=i;
+		}
+		System.out.println(sum2);
+	}
+}
+
+
+
+
+
+package GUI;
+import java.awt.*;
+import java.awt.event.*;
+public class test2 {
+	public static void main(String [] args){
+		Frame f=new Frame("我的窗口！");
+		f.setSize(400,300);
+		f.setLocation(300, 200);
+		f.setVisible(true);
+		f.addWindowListener(new MyWindowListen());
+	}
+}
+class MyWindowListen extends WindowAdapter{
+	public void windowClosing(WindowEvent e){
+		Window window=(Window)e.getComponent();
+		window.dispose();
+	}
+}
+
+
+
+
+package GUI;
+import java.awt.*;
+import java.awt.event.*;
+public class test3 {
+	public static void main(String [] args){
+		Frame f=new Frame("我的窗口！");
+		f.setSize(400,300);
+		f.setLocation(300, 200);
+		f.setVisible(true);
+		Button btn=new Button("EXIT");
+		f.add(btn);
+		btn.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				System.exit(0);
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+				
+			}
+		});
+	}
+
+}
