@@ -1,0 +1,100 @@
+package test;
+
+import java.util.Scanner;
+
+class Node{
+	int n;
+	Node Nextnode=null;
+	Node lastnode=null;
+	
+	Node(int n){
+		this.n=n;
+	}
+}
+class Loop{
+	Node Firstnode=null;
+	Node temp=null;
+	int len=0;
+	int startnum=0;
+	int outnum=0;
+	void setlen(int len){
+		this.len=len;
+	}
+	void create(){
+		for(int i=1;i<=len;i++){
+			if(i==1){
+				Node ch=new Node(i);
+				this.Firstnode=ch;
+				this.temp=ch;
+			}else{
+				if(i==len){
+					Node ch=new Node(i);
+					temp.Nextnode=ch;
+					ch.lastnode=temp;
+					temp=ch;
+					temp.Nextnode=this.Firstnode;
+					Firstnode.lastnode=temp;
+					
+				}else {
+					Node ch=new Node(i);
+					temp.Nextnode=ch;
+					ch.lastnode=temp;
+					temp=ch;
+				}
+			}
+		}	
+	}
+	void show(){
+		Node p=this.Firstnode;
+		while(p.Nextnode!=Firstnode){
+			System.out.println(p.n);
+			p=p.Nextnode;
+		}
+		System.out.println(p.n);
+	}
+	void setstartnum(int s){
+		startnum=s;
+	}
+	void setoutnum(int out){
+		outnum=out;
+	}
+	void run(){
+		int i,j;
+		Node p=Firstnode;
+		for(i=1;i<startnum;i++){
+			p=p.Nextnode;
+		}
+		System.out.println(p.n);
+		do{
+			for(j=1;j<outnum;j++){
+				p=p.Nextnode;
+			}
+			System.out.print(p.n+" ");
+			p.Nextnode.lastnode=p.lastnode;
+			p.lastnode.Nextnode=p.Nextnode;
+			p=p.Nextnode;
+			len--;
+		}while(len!=1);
+		System.out.print(p.n+" ");
+	}
+}
+
+public class 约瑟夫问题 {
+
+	public static void main(String [] args){
+		Scanner input =new Scanner(System.in);
+		Loop l=new Loop();
+		System.out.print("请输入总人数:");
+		int x=input.nextInt();
+		l.setlen(x);
+		l.create();
+		l.show();
+		System.out.println("请问开始数数的序号是:");
+		int s=input.nextInt();
+		l.setstartnum(s);
+		System.out.println("请问出列的序号为:");
+		int out=input.nextInt();
+		l.setoutnum(out);
+		l.run();
+	}
+}
