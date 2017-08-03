@@ -1,0 +1,187 @@
+package test;
+
+import java.util.*;
+
+class Nodelist{
+	Nodelist nextnode;
+	Data data=new Data();
+}
+class Data{
+	private String name;
+	private String num;
+	private int score;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getNum() {
+		return num;
+	}
+	public void setNum(String num) {
+		this.num = num;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+}
+class List{
+	Nodelist firstnode=null;
+	Nodelist temp=null;
+	Scanner in=new Scanner(System.in);
+	int len=0;
+	void creat(int n){
+		for(int i=0;i<n;i++){
+			if(len==0){
+				Nodelist p=new Nodelist();
+				firstnode=p;
+				temp=p;
+				System.out.println("请输入第"+(len+1)+"个学生信息:");
+				System.out.println("姓名:");
+			    String nam=in.next();
+			    p.data.setName(nam);
+				System.out.println("学号:");
+				String nu=in.next();
+				p.data.setNum(nu);
+				System.out.println("成绩:");
+				int sco=in.nextInt();
+				p.data.setScore(sco);
+				len++;
+			}else{
+				Nodelist p=new Nodelist();
+				temp.nextnode=p;
+				temp=p;
+				System.out.println("请输入第"+(len+1)+"个学生信息:");
+				System.out.println("姓名:");
+			    String nam=in.next();
+			    p.data.setName(nam);
+				System.out.println("学号:");
+				String nu=in.next();
+				p.data.setNum(nu);
+				System.out.println("成绩:");
+				int sco=in.nextInt();
+				p.data.setScore(sco);
+				len++;
+			}
+		}
+	}
+	void show(){
+		Nodelist p=firstnode;
+		for(int i=0;i<len;i++){
+			System.out.println("第"+(i+1)+"个学生信息为:");
+			System.out.println("姓名:"+p.data.getName());
+			System.out.println("学号:"+p.data.getNum());
+			System.out.println("成绩:"+p.data.getScore());
+			p=p.nextnode;
+		}
+	}
+	void loca(String st){
+		Nodelist p=firstnode;
+		int n=0;
+		for(int i=0;i<len;i++){
+			if(p.data.getNum().equals(st)){
+				System.out.println("查找成功！！");
+				System.out.println("该学生的信息为:");
+				System.out.println("姓名:"+p.data.getName());
+				System.out.println("学号:"+p.data.getNum());
+				System.out.println("成绩:"+p.data.getScore());
+				n++;
+				break;
+			}
+			p=p.nextnode;
+			if(n==0){
+				System.out.println("查找失败!!!未找到该成员信息!!!");
+			}
+		}
+	}
+	void delete(int n){
+		int i;
+		Nodelist p=firstnode;
+		Nodelist r=firstnode;
+		for(i=0;i<n-1;i++){
+			p=p.nextnode;
+		}
+		for(i=1;i<n-1;i++){
+			r=r.nextnode;
+		}
+		r.nextnode=p.nextnode;
+		len--;
+	}
+	void insert(int n){
+		int i;
+		Nodelist p=firstnode;
+		Nodelist r=firstnode;
+		for(i=0;i<n-1;i++){
+			p=p.nextnode;
+		}
+		for(i=1;i<n-1;i++){
+			r=r.nextnode;
+		}
+		Nodelist q=new Nodelist();
+		System.out.println("请输入你要插入学生的信息:");
+		System.out.println("姓名:");
+		String nam=in.next();
+		q.data.setName(nam);
+	    System.out.println("学号:");
+		String nu=in.next();
+		q.data.setNum(nu);
+		System.out.println("成绩:");
+		int sco=in.nextInt();
+		q.data.setScore(sco);
+		q.nextnode=p;
+		r.nextnode=q;
+		len++;
+	}
+	
+}
+
+
+
+public class Linklist {
+
+	public static void main(String[] args) {
+		Scanner input=new Scanner(System.in);
+		List l=new List();
+		while(true){
+			System.out.println("*******************************");
+			System.out.println("**          1.录入数据                           **");
+			System.out.println("**          2.查找数据                           **");
+			System.out.println("**          3.插入数据                           **");
+			System.out.println("**          4.删除数据                           **");
+			System.out.println("**          5.输出数据                           **");
+			System.out.println("**          0.退出                                  **");
+			System.out.println("*******************************");
+			System.out.print("请输入你要选择功能的序号:");
+			int a=input.nextInt();
+			if(a==1){
+				System.out.println("请问你要录入几个学生信息:");
+				int n=input.nextInt();
+				l.creat(n);
+			}else if(a==2){
+				System.out.println("请输入你要查找成员的学号:");
+				String st=input.next();
+				l.loca(st);
+			}else if(a==3){
+				System.out.println("请输入你要插入的位置:");
+				int n=input.nextInt();
+				l.insert(n);
+			}else if(a==4){
+				System.out.println("请输入你要删除第几个学生:");
+				int n=input.nextInt();
+				l.delete(n);
+			}else if(a==5){
+				l.show();
+			}else if(a==0){
+				System.exit(0);
+			}else{
+				System.out.println("您的输入有误 ！！请重新输入!!!");
+			}
+		}
+
+	}
+
+}
