@@ -1,0 +1,89 @@
+package test;
+
+import java.util.*;
+
+class StackNode{
+	Info info=new Info();
+	StackNode nextnode;
+}
+class Info{
+	private String name;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+	private int score;
+}
+
+
+public class Linkstack {
+	static Scanner input=new Scanner(System.in);
+	static StackNode top=null;
+	static StackNode base=null;
+	
+	static void init(){
+		StackNode p=new StackNode();
+		top=p;
+		base=p;
+	}
+	static void put(){
+		StackNode p=new StackNode();
+		p.nextnode=top;
+		top=p;
+		System.out.println("请输入入栈学生信息:");
+		System.out.println("姓名:");
+		String name=input.next();
+		p.info.setName(name);
+		System.out.println("成绩:");
+		int score=input.nextInt();
+		p.info.setScore(score);
+	}
+	static void out(){
+		top=top.nextnode;
+	}
+	static void show(){
+		StackNode p=top;
+		System.out.println("从栈顶开始数栈中成员信息为:");
+		int i=1;
+		while(p!=base){
+			System.out.println("第"+i+"个成员:");
+			System.out.println("姓名："+p.info.getName());
+			System.out.println("成绩:"+p.info.getScore());
+			i++;
+			p=p.nextnode;
+		}
+	}
+	public static void main(String[] args) {
+		init();
+		while(true){
+			System.out.println("******************");
+			System.out.println("**    1.进栈             **");
+			System.out.println("**    2.出栈             **");
+			System.out.println("**    3.输出             **");
+			System.out.println("**    0.退出             **");
+			System.out.println("******************");
+			System.out.println("请输入你要选择功能的序号:");
+			int a=input.nextInt();
+			if(a==1){
+				put();
+			}else if(a==2){
+				out();
+			}else if(a==3){
+				show();
+			}else if(a==0){
+				System.exit(0);
+			}else{
+				
+			}
+		}
+	}
+
+}
