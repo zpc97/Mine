@@ -1,0 +1,102 @@
+package test;
+
+import java.util.*;
+
+
+class Tree{
+	Tree lchild;
+	Tree rchild;
+	String data=new String();
+}
+
+public class Bitree {
+	static Scanner input=new Scanner(System.in);
+	static int n=0;
+	static void creat(Tree t){
+		if(n==0){
+		    System.out.println("请输入根的数据:");
+		    t.data=input.next();
+		}else{
+			System.out.println("请输入结点数据:");
+			t.data=input.next();
+		}
+	    System.out.println("是否建立左子树:");
+		System.out.println("  1.是                      2.否  ");
+		int a=input.nextInt();
+		if(a==1){
+		Tree p=new Tree();
+		t.lchild=p;
+		p.lchild=null;
+		p.rchild=null;
+		n++;
+	    creat(p);
+		}
+	    System.out.println("是否建立右子树:");
+	    System.out.println("  1.是                      2.否  ");
+		int b=input.nextInt();
+		if(b==1){
+	    Tree p=new Tree();
+	    t.rchild=p;
+		p.lchild=null;
+		p.rchild=null;
+	    n++;
+		creat(p);
+		}
+	}
+
+	static void firstorder(Tree t){
+		if(t!=null){
+		  System.out.println(t.data);
+		  inorder(t.lchild);
+		  inorder(t.rchild);
+		}
+	}
+	
+	static void inorder(Tree t){
+		if(t!=null){
+		  inorder(t.lchild);
+		  System.out.println(t.data);
+		  inorder(t.rchild);
+		}
+	}
+	
+	static void lateorder(Tree t){
+		if(t!=null){
+		  inorder(t.lchild);
+		  inorder(t.rchild);
+		  System.out.println(t.data);
+		}
+	}
+	
+	public static void main(String[] args) {
+		Tree t=new Tree();
+		while(true){
+			System.out.println("************************");
+			System.out.println("**     1.建立二叉树               **");
+			System.out.println("**     2.先序遍历                   **");
+			System.out.println("**     3.中序遍历                   **");
+			System.out.println("**     4.后序遍历                   **");
+			System.out.println("**     0.退出                          **");
+			System.out.println("************************");
+			System.out.println("请输入你要选择功能的序号:");
+			int a=input.nextInt();
+			if(a==1){
+				creat(t);
+			}else if(a==2){
+				System.out.println("先序遍历的结果为:");
+				firstorder(t);
+			}else if(a==3){
+				inorder(t);
+			}else if(a==4){
+				lateorder(t);
+			}else if(a==0){
+				System.exit(0);
+			}else{
+				System.out.println("抱歉！！！您的输入有误！！！");
+			}
+		}
+		
+
+	}
+
+}
