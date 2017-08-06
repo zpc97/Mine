@@ -255,3 +255,70 @@ public class Graphic {
 
 
 
+
+
+
+package test;
+
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+
+class MyWindowListen extends WindowAdapter{
+	public void windowClosing(WindowEvent e){
+		Window window=(Window)e.getComponent();
+		window.dispose();
+	}
+}
+
+
+public class Chess {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Frame f=new Frame("¹ú¼ÊÏóÆå");
+		Panel p=new MyPanel();
+		f.add(p);
+		f.setSize(660,695);
+		f.setLocationRelativeTo(null);
+		f.setVisible(true);
+		f.addWindowListener(new MyWindowListen());
+		
+	}
+
+}
+class MyPanel extends Panel{
+	public void paint(Graphics g){
+		int n;
+		for(int i=1;i<9;i++){
+			if(i%2==0){
+				 n=1;
+			}else{
+				 n=0;
+			}
+			for(int j=0;j<8;j++){
+				
+				if(n%2==1){
+					Panel p=new MyPanel();
+					g.setColor(Color.black);
+					g.fillRect(j*80,(i-1)*80,80,80);
+					n++;
+				}else{
+					Panel p=new MyPanel();
+					g.setColor(Color.white);
+					g.fillRect(j*80,(i-1)*80,80,80);
+					n++;
+				}
+			}
+			
+		}
+		
+		
+		
+	}
+}
+
+
+
+
