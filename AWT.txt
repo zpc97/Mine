@@ -1,0 +1,257 @@
+package GUI;
+import java.awt.event.*;
+import java.awt.*;
+
+
+public class test4 {
+	public static void main(String [] args){
+		Frame f=new Frame("WindowEvent");
+		f.setSize(400,300);
+		f.setLocation(300, 200);
+		f.setVisible(true);
+		f.addWindowListener(new WindowListener() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				System.out.println("windowOpened----窗体打开事件");
+				
+			}
+			
+			@Override
+			public void windowIconified(WindowEvent e) {
+				System.out.println("windowIconified----窗口图标化事件");
+				
+			}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				System.out.println("windowDeiconified---窗体取消图标化事件");
+				
+			}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				System.out.println("windowDeactivated---窗体停用事件");
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.out.println("windowclosing---窗体正在关闭事件");
+				((Window) e.getComponent()).dispose();			}
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+				System.out.println("windowclosed----窗体关闭事件");
+				
+			}
+			
+			@Override
+			public void windowActivated(WindowEvent e) {
+				System.out.println("windowActivated----窗体激活事件");
+			}
+		});
+	}
+
+}
+
+
+
+
+
+
+package GUI;
+
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class test5 {
+	public static void main(String [] args){
+		Frame f=new Frame("WindowEvent");
+		f.setLayout(new FlowLayout());
+		f.setSize(300,200);
+		f.setLocation(300,200);
+		f.setVisible(true);
+		Button but=new Button("Button");
+		f.add(but);
+		but.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("mouseReleases---鼠标放开事件");
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("mousePressed---鼠标按下事件");
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("mouseexited---鼠标移开按钮区域事件");
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("mouseEntered---鼠标进入按钮区域事件");
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getButton()==e.BUTTON1){
+					System.out.println("鼠标左击事件");
+				}
+				if(e.getButton()==e.BUTTON3){
+					System.out.println("鼠标右击事件");
+				}
+				if(e.getButton()==e.BUTTON2){
+					System.out.println("鼠标中击事件");
+				}
+			}
+		});
+	}
+
+}
+
+
+
+
+
+package GUI;
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class test6 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Frame f=new Frame("keyevent");
+		f.setLayout(new FlowLayout());
+		f.setSize(800,600);
+		f.setLocation(300, 300);
+		f.setVisible(true);
+		TextField tf=new TextField(30);
+		f.add(tf);
+		tf.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				int keycode=e.getKeyCode();
+				String s=KeyEvent.getKeyText(keycode);
+				System.out.println("输入的内容为:"+s+" ");
+				System.out.println("对于的keycode为:"+keycode);
+			}
+		});
+	}
+
+}
+
+
+
+
+package GUI;
+
+import java.awt.*;
+import java.awt.event.*;
+
+
+
+
+public class Flowlayout {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Frame f=new Frame("Flowlayout");
+		f.setLayout(new FlowLayout(FlowLayout.LEFT,30,40));
+		f.setSize(800,800);
+		f.setLocation(300, 200);
+		f.addWindowListener(new MyWindowListen());
+		Button but1=new Button("第一个按钮");
+		f.add(but1);
+		but1.addActionListener(new ActionListener() {
+			private int num=1;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				f.add(new Button("第"+num+"个按钮"));
+				num++;
+				f.setVisible(true);
+			}
+		});
+		f.setVisible(true);
+	}
+
+}
+
+
+package GUI;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+
+class MyPanel extends Panel{
+	public void paint(Graphics g){
+		int width=160;
+		int height=40;
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillRect(0, 0, width, height);
+		g.setColor(Color.blue);
+		g.drawRect(0, 0, width-1, height-1);
+		Random r=new Random();
+		for(int i=0;i<100;i++){
+			int x=r.nextInt(width)-2;
+			int y=r.nextInt(height)-2;
+			g.drawOval(x, y, 2, 2);
+		}
+		g.setFont(new Font("黑体",Font.BOLD,30));
+		g.setColor(Color.BLUE);
+		char[] chars=("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ").toCharArray();
+		StringBuffer sb=new StringBuffer();
+		for(int i=0;i<4;i++){
+			int pos=r.nextInt(chars.length);
+			char c=chars[pos];
+			sb.append(c+" ");
+		}
+		g.drawString(sb.toString(), 20,30);
+	}
+}
+
+
+public class Graphic {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		final Frame frame=new Frame("验证码");
+		final Panel panel=new MyPanel();
+		frame.add(panel);
+		frame.setSize(400,200);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+		frame.addWindowListener(new MyWindowListen());
+	}
+
+}
+
+
+
+
