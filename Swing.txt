@@ -1,0 +1,167 @@
+package gui;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		JButton bt1=new JButton("模态对话框");
+		JButton bt2=new JButton("飞模态对话框");
+		JFrame f=new JFrame("DialogDemo");
+		f.setSize(500, 500);
+		f.setLocation(300, 200);
+		f.setLayout( new FlowLayout());
+		f.add(bt1);
+		f.add(bt2);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setVisible(true);
+		JLabel label=new JLabel();
+		JDialog dialog=new JDialog(f,"Dialog");
+		dialog.setSize(220,150);
+		dialog.setLocation(350, 250);
+		dialog.setLayout(new FlowLayout());
+		JButton btn3=new JButton("确定");
+		dialog.add(btn3);
+		bt1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dialog.setModal(true);
+				if(dialog.getComponents().length==1){
+					dialog.add(label);
+				}
+				label.setText("模式对话框，点击确定按钮关闭");
+				dialog.setVisible(true);
+			}
+		});
+		
+		bt2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dialog.setModal(false);
+				if(dialog.getComponents().length==1){
+					dialog.add(label);
+				}
+				label.setText("模式对话框，点击确定按钮关闭");
+				dialog.setVisible(true);
+			}
+		});
+		btn3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dialog.dispose();
+			}
+		});
+		
+	}
+	
+	
+	
+
+}
+
+
+
+
+
+
+
+
+package gui;
+
+import java.awt.*;
+import javax.swing.*;
+
+public class JscrollPane  extends JFrame{
+
+	public JscrollPane(){
+		this.setTitle("Pane");
+		JScrollPane jscollpane=new JScrollPane();
+		jscollpane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		jscollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		JPanel panel=new JPanel();
+		panel.add(new JButton("按钮1"));
+		panel.add(new JButton("按钮2"));
+		panel.add(new JButton("按钮3"));
+		panel.add(new JButton("按钮4"));
+		panel.add(new JButton("按钮5"));
+		panel.add(new JButton("按钮6"));
+		panel.add(new JButton("按钮7"));
+		panel.add(new JButton("按钮8"));
+		panel.add(new JButton("按钮9"));
+		jscollpane.setViewportView(panel);
+		this.add(jscollpane ,BorderLayout.CENTER);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(400,250);
+		this.setVisible(true);
+	}
+	public static void main(String[] args) {
+		// TODO 自动生成的方法存根
+		new JscrollPane();
+	}
+
+}
+
+
+
+
+package gui;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+
+public class JText extends JFrame{
+
+	public JText(){
+		this.setLayout(new BorderLayout());
+		JTextArea chat=new JTextArea(12,34);
+		JScrollPane show=new JScrollPane(chat);
+		chat.setEditable(false);
+		JPanel inputpanel=new JPanel();
+		JTextField inputfield=new JTextField(20);
+		JButton sendbt=new JButton("发送");
+		sendbt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				String content=inputfield.getText();
+				if(content!=null&&!content.trim().equals("")){
+					chat.append("本人:"+content+"\n");
+				}else{
+					chat.append("聊天信息不能为空"+"\n");
+				}
+				inputfield.setText("");
+			}
+		});
+		Label label=new Label("聊天信息");
+		inputpanel.add(label);
+		inputpanel.add(inputfield);
+		inputpanel.add(sendbt);
+		this.add(show,BorderLayout.CENTER);
+		this.add(inputpanel,BorderLayout.SOUTH);
+		this.setTitle("聊天窗口");
+		this.setSize(400,300);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		
+	}
+	public static void main(String[] args) {
+		// TODO 自动生成的方法存根
+		new JText();
+	}
+
+}
