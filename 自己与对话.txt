@@ -1,0 +1,95 @@
+package gui;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class doubleJText  extends JFrame{
+	JButton jb1,jb2;
+	JTextField field1,field2;
+	JTextArea area1,area2;
+	public doubleJText(){
+		JFrame jf1=new JFrame();
+		JFrame jf2=new JFrame();
+		jf1.setLayout(new BorderLayout());
+		jf2.setLayout(new BorderLayout());
+		area1=new JTextArea(12,34);
+		area2=new JTextArea(12,34);
+		JScrollPane pane1=new JScrollPane(area1);
+		JScrollPane pane2=new JScrollPane(area2);
+		area1.setEditable(false);
+		area2.setEditable(false);
+		JPanel jpanel1=new JPanel();
+		JPanel jpanel2=new JPanel();
+		field1=new JTextField(20);
+		field2=new JTextField(20);
+		jb1=new JButton("发送");
+		jb2=new JButton("发送");
+		Font font = new Font("黑体", Font.PLAIN, 20);
+		jb1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				String s1=field1.getText();
+				area1.setFont(font);
+				area2.setFont(font);
+				if(s1!=null&&!s1.trim().equals("")){
+					area1.append("我:"+s1+"\n");
+					area2.append("对方:"+s1+"\n");
+				}else{
+					area1.append("聊天信息不能为空!!"+"\n");
+				}
+				field1.setText("");
+				field2.setText("");
+			}
+		});
+        jb2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				String s2=field2.getText();
+				area1.setFont(font);
+				area2.setFont(font);
+				if(s2!=null&&!s2.trim().equals("")){
+					area1.append("对方:"+s2+"\n");
+					area2.append("我:"+s2+"\n");
+				}else{
+					area2.append("聊天信息不能为空!!"+"\n");
+				}
+				field2.setText("");
+				field1.setText("");
+			}
+		});
+		Label label1=new Label("聊天信息");
+		Label label2=new Label("聊天信息");
+		jpanel1.add(label1);
+		jpanel2.add(label2);
+		jpanel1.add(field1);
+		jpanel2.add(field2);
+		jpanel1.add(jb1);
+		jpanel2.add(jb2);
+		jf1.add(pane1,BorderLayout.CENTER);
+		jf2.add(pane2,BorderLayout.CENTER);
+		jf1.add(jpanel1,BorderLayout.SOUTH);
+		jf2.add(jpanel2,BorderLayout.SOUTH);
+		jf1.setTitle("聊天窗口");
+		jf2.setTitle("聊天窗口");
+		jf1.setSize(400,300);
+		jf2.setSize(400,300);
+		jf1.setLocation(200,200);
+		jf2.setLocation(500,500);
+		jf1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf1.setVisible(true);
+		jf2.setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		// TODO 自动生成的方法存根
+		new doubleJText();
+	}
+
+}
