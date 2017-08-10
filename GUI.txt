@@ -101,3 +101,66 @@ public class test3 {
 	}
 
 }
+
+
+
+
+
+
+package gui;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+
+public class denglu extends JFrame{
+
+	JPanel jp1,jp2,jp3;
+	//定义三面板
+	JTextField jtf;
+	//定义文本框
+	JPasswordField jpf;
+	//定义加密文本框
+	JLabel jl1,jl2;
+	//定义两个标签
+	JButton jb1,jb2;
+	//按钮 
+	public denglu(){
+		jp1=new JPanel();
+		jp2=new JPanel();
+		jp3=new JPanel();
+		
+		jtf=new JTextField(10);
+		//文本框长度定为10
+		jpf=new JPasswordField(10);
+		//加密文本框长度为10 
+		this.setLayout(new GridLayout(3,1));
+		//GridLayout布局   三行三列
+		jb1=new JButton("确定");
+		jb2=new JButton("返回");
+		jl1=new JLabel("账号");
+		jl2=new JLabel("密码");
+		jp1.add(jl1);
+		jp1.add(jtf);
+		jp2.add(jl2);
+		jp2.add(jpf);
+		jp3.add(jb1);
+		jp3.add(jb2);
+		
+		this.add(jp1);
+		this.add(jp2);
+		this.add(jp3);
+		this.setSize(300,200);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public static void main(String[] args) {
+		// TODO 自动生成的方法存根
+		new denglu();
+
+	}
+
+}
