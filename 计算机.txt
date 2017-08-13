@@ -7,22 +7,18 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class Calculator extends JFrame{
+public class c extends JFrame{
 
-	int x[]=new int[10];
-	int xl=0,yl=0,zl=0;
-	String y[]=new String[20];
-	String z[]=new String[10];
+	double flag1,flag2,flag3;
+	int n,len=0;
 	int max=16;
 	JButton jb[]=new JButton[max];
 	JPanel jp1,jp2;
 	JTextArea jta;
 	int i,k;
 	
-	public Calculator(){
-		for(i=0;i<10;i++){
-			x[i]=0;
-		}
+	public c(){
+		
 		jb[0]=new JButton("0");
 		jb[1]=new JButton("1");
 		jb[2]=new JButton("2");
@@ -37,7 +33,7 @@ public class Calculator extends JFrame{
 		jb[11]=new JButton("+");
 		jb[12]=new JButton("-");
 		jb[13]=new JButton("*");
-		jb[14]=new JButton("/");
+		jb[14]=new JButton("/"); 
 		jb[15]=new JButton("=");
 		for(i=0;i<16;i++){
 			jb[i].setFont(new Font("宋体", Font.BOLD, 40));
@@ -65,18 +61,12 @@ public class Calculator extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				if(yl==0){
+				if(flag2==0){
 					;
-				}else{
-					jta.append("+");
-					for(int p=0;p<yl;p++){
-						x[xl]=x[xl]+(Integer.parseInt(y[p]))*10^(yl-1-p);
-					}
-					xl++;
-					yl=0;
-					z[zl]="+";
-					zl++;
 				}
+				flag2=flag1;
+				n=1;
+				jta.setText("");
 			}
 		});
 		jb[12].addActionListener(new ActionListener() {
@@ -84,7 +74,39 @@ public class Calculator extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				
+				if(flag2==0){
+					;
+				}
+				flag2=flag1;
+				n=2;
+				jta.setText("");
+			}
+		});
+		
+		jb[13].addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				if(flag2==0){
+					;
+				}
+				flag2=flag1;
+				n=3;
+				jta.setText("");
+			}
+		});
+		jb[14].addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				if(flag2==0){
+					;
+				}
+				flag2=flag1;
+				n=4;
+				jta.setText("");
 			}
 		});
 		jb[15].addActionListener(new ActionListener() {
@@ -92,34 +114,23 @@ public class Calculator extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				int sum=x[0];
-				for(int p=0;p<yl;p++){
-					x[xl]=x[xl]+(Integer.parseInt(y[p]))*10^(yl-1-p);
+				double result;
+				if(n==1){
+					result=flag2+flag1;
+					jta.setText(flag2+"+"+flag1+"="+result);
+				}else if(n==2){
+					result=flag2-flag1;
+					jta.setText(flag2+"-"+flag1+"="+result);
+				}else if(n==3){
+					result=flag1*flag2;
+					jta.setText(flag2+"*"+flag1+"="+result);
+				}else if(n==4){
+					result=flag2/flag1;
+					jta.setText(flag2+"/"+flag1+"="+result);
 				}
-				xl++;
-				yl=0;
-				for(int p=0;p<zl;p++){
-					if(z[p].equals("+")){
-						sum=sum+x[p+1];
-					}else if(z[p].equals("-")){
-						sum=sum-x[p+1];
-					}else if(z[p].equals("*")){
-						sum=sum*x[p+1];
-					}else if(z[p].equals("/")){
-						sum=sum/x[p+1];
-					}else{
-						;
-					}
+				
 				}
-				xl=0;
-				yl=0;
-				zl=0;
-				jta.append("="+Integer.toString(sum));
-			}
-		});
-		
-		
-		
+			});
 	}
 	
 	
@@ -129,21 +140,18 @@ public class Calculator extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				if(a==0&&yl==0){
+				if(a==0&&len==0){
 					;
-				}else{
-					jta.append(Integer.toString(a));
-					y[yl]=Integer.toString(a);
-					yl++;
 				}
-				
+				jta.setText(jta.getText()+a);
+				flag1=Double.parseDouble(jta.getText());
 			}
 		});
 	}
 	
 	public static void main(String[] args) {
 		// TODO 自动生成的方法存根
-		new Calculator();
+		new c();
 	}
 
 }
