@@ -1,0 +1,122 @@
+package gui;
+
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.image.ImageObserver;
+import java.text.AttributedCharacterIterator;
+
+import javax.swing.*;
+
+
+public class Gobang extends JFrame implements MouseListener{
+
+	static public int row=15;
+	static public int col=15;
+	int getx=0;
+	int gety=0;
+	int i,j,n=1;
+	static public int [][]zuobiao=new int[row][col];
+	Graphics g=null;	
+	public void paint(Graphics g){
+		super.paint(g);
+		g.setColor(Color.LIGHT_GRAY);
+		g.fill3DRect(20, 60, 840, 840, false);
+		for(i=0;i<15;i++){
+			for(j=0;j<15;j++){
+				zuobiao[i][j]=0;
+			}
+		}
+		for(i=0;i<15;i++){
+			g.drawLine(20, 60+i*60, 860, 60+i*60);
+		}
+		for(i=0;i<15;i++){
+			g.drawLine(20+i*60,60,20+i*60,900);
+		}
+		g.setColor(Color.black);
+		g.fillOval(252, 292, 15, 15);
+		g.fillOval(612, 292, 15, 15);
+		g.fillOval(612, 652, 15, 15);
+		g.fillOval(252, 652, 15, 15);
+		g.fillOval(432, 472, 15, 15);
+		
+		
+		
+	}
+	public Gobang(){
+		this.setTitle("五子棋");
+		this.setSize(900,920);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		this.addMouseListener(this);
+	}
+	
+	
+	public static void main(String[] args) {
+		// TODO 自动生成的方法存根
+		new Gobang();
+	}
+
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO 自动生成的方法存根
+				
+		getx=e.getX();
+		gety=e.getY();
+		int x1=0,y1=0;
+		if(n%2==1){
+			for(i=0;i<15;i++){
+				if(getx==(20+i*60)){
+					 x1=i;
+				}
+			}
+			for(j=0;j<15;j++){
+				if(gety==(60+gety*60)){
+					y1=j;
+					}
+				}
+			zuobiao[x1][y1]=1;
+			for(i=0;i<15;i++){
+				for(j=0;j<15;j++){
+					if(zuobiao[i][j]==1){
+						g.setColor(Color.BLACK);
+						g.fillOval(20+i*60, 60+j*60, 25, 25);
+					}
+				}
+			}
+			n++;
+		}
+	}
+		
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO 自动生成的方法存根
+		
+	}
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO 自动生成的方法存根
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO 自动生成的方法存根
+		
+	}
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO 自动生成的方法存根
+		
+	}
+
+}
+
