@@ -22,7 +22,7 @@ class Five extends JFrame implements MouseListener {
 	int gety = 0;
 	int x = 0, y = 0;
 	boolean win=false;
-	Integer overtime=30;
+	Integer overtime=360;
 	int i, j, n = 1;
 	static public int[][] zuobiao = new int[row][col];
 	
@@ -176,12 +176,12 @@ class Five extends JFrame implements MouseListener {
 
 	public boolean shangxie(int x, int y) {
 		if (zuobiao[x][y] == 1) {
-			for (i = x - 1, j = 1; i >= 0 && y + j < 15&&zuobiao[i][y+j]==1; i--, j++) {
+			for (i = x - 1, j = 1; i >= 0 && y + j < 15&&zuobiao[i][y-j]==1; i--, j++) {
 				if (zuobiao[i][y + j] == 1) {
 					num1++;
 				}
 			}
-			for (i = x + 1, j = 1; i < 15 && y - j >= 0&& y + j < 15&&zuobiao[i][y+j]==1; i++, j++) {
+			for (i = x + 1, j = 1; i < 15 && y - j >= 0&& y + j < 15&&zuobiao[i][y-j]==1; i++, j++) {
 				if (zuobiao[i][y - j] == 1) {
 					num1++;
 				}
@@ -192,12 +192,12 @@ class Five extends JFrame implements MouseListener {
 			num1 = 1;
 		}
 		if (zuobiao[x][y] == 2) {
-			for (i = x - 1, j = 1; i >= 0 && y + j < 15&& y + j < 15&&zuobiao[i][y+j]==2; i--, j++) {
+			for (i = x - 1, j = 1; i >= 0 && y + j < 15&& y + j < 15&&zuobiao[i][y-j]==2; i--, j++) {
 				if (zuobiao[i][y + j] == 2) {
 					num2++;
 				}
 			}
-			for (i = x + 1, j = 1; i < 15 && y - j >= 0&& y + j < 15&&zuobiao[i][y+j]==2; i++, j++) {
+			for (i = x + 1, j = 1; i < 15 && y - j >= 0&& y + j < 15&&zuobiao[i][y-j]==2; i++, j++) {
 				if (zuobiao[i][y - j] == 2) {
 					num2++;
 				}
@@ -217,7 +217,7 @@ class Five extends JFrame implements MouseListener {
 					num1++;
 				}
 			}
-			for (i = x + 1, j = 1; i < 15 && y + j < 15&&zuobiao[i][y - j] == 1; i++, j++) {
+			for (i = x + 1, j = 1; i < 15 && y + j < 15&&zuobiao[i][y + j] == 1; i++, j++) {
 				if (zuobiao[i][y + j] == 1) {
 					num1++;
 				}
@@ -233,7 +233,7 @@ class Five extends JFrame implements MouseListener {
 					num2++;
 				}
 			}
-			for (i = x + 1, j = 1; i < 15 && y + j < 15&&zuobiao[i][y - j] == 2; i++, j++) {
+			for (i = x + 1, j = 1; i < 15 && y + j < 15&&zuobiao[i][y + j] == 2; i++, j++) {
 				if (zuobiao[i][y + j] == 2) {
 					num2++;
 				}
@@ -331,12 +331,14 @@ class Five extends JFrame implements MouseListener {
 				for (j = 0; j < 15; j++) {
 					if (gety >= (30 + j * 60) && gety <= (90 + j * 60)) {
 						y = j;
+					}else if(gety<30){
+						y=0;
 					}
 				}
 				if (zuobiao[x][y] == 0) {
 					zuobiao[x][y] = 1;
 					n++;
-					overtime=30;
+					overtime=360;
 				} else {
 
 				}
@@ -349,12 +351,14 @@ class Five extends JFrame implements MouseListener {
 				for (j = 0; j < 15; j++) {
 					if (gety >= (30 + j * 60) && gety <= (90 + j * 60)) {
 						y = j;
+					}else if(gety<30){
+						y=0;
 					}
 				}
 				if (zuobiao[x][y] == 0) {
 					zuobiao[x][y] = 2;
 					n++;
-					overtime=30;
+					overtime=360;
 				} else {
 
 				}
