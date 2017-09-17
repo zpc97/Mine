@@ -1,12 +1,16 @@
 package gui;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.ImageObserver;
-
+import java.util.Calendar;
 
 import javax.swing.*;
+
+import javafx.scene.layout.Border;
 
 class Five extends JFrame implements MouseListener {
 
@@ -16,9 +20,12 @@ class Five extends JFrame implements MouseListener {
 	int num2 = 1;
 	int getx = 0;
 	int gety = 0;
+	int x = 0, y = 0;
+	boolean win=false;
+	Integer overtime=30;
 	int i, j, n = 1;
 	static public int[][] zuobiao = new int[row][col];
-
+	
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.setColor(Color.LIGHT_GRAY);
@@ -35,37 +42,74 @@ class Five extends JFrame implements MouseListener {
 		g.fillOval(612, 652, 15, 15);
 		g.fillOval(252, 652, 15, 15);
 		g.fillOval(432, 472, 15, 15);
-
+		Calendar time=Calendar.getInstance();
+		int hour=time.get(Calendar.HOUR);
+		int min=time.get(Calendar.MINUTE);
+		int sec=time.get(Calendar.SECOND);
+		Font timefont=new Font("行楷",Font.BOLD,50);
+		g.setColor(Color.blue);
+		g.setFont(timefont);
+		
+		if(n%2==1){
+			g.drawString("黑棋下...", 900, 300);
+			g.drawString("剩余时间:", 900, 500);
+			g.drawString(overtime.toString(),900, 600);
+		}else if(n%2==0){
+			g.drawString("白棋下...", 900, 300);
+			g.drawString("剩余时间:", 900, 500);
+			g.drawString(overtime.toString(),900, 600);
+		}
+		g.drawString(hour+":"+min+":"+sec, 900, 100);
 		for (i = 0; i < 15; i++) {
 			for (j = 0; j < 15; j++) {
 				if (zuobiao[i][j] == 1) {
 					g.setColor(Color.BLACK);
-					g.fillOval(9 + i * 60, 50 + j * 60, 25, 25);
+					g.fillOval(i * 60, 40 + j * 60, 40, 40);
 				} else if (zuobiao[i][j] == 2) {
 					g.setColor(Color.white);
-					g.fillOval(9 + i * 60, 50 + j * 60, 25, 25);
+					g.fillOval(  i * 60, 40 + j * 60, 40, 40);
 				}
 			}
 		}
 	}
-
+	public void run(){
+		while(!win){
+			try{
+			Thread.sleep(1000);
+			overtime--;
+			if(overtime<=0){
+				judge(x,y,true);
+				break;
+			}
+			}catch(Exception e){
+				
+			}
+			this.repaint();
+		}
+	}
 	public Five() {
 		this.setTitle("五子棋");
-		this.setSize(900, 920);
+		this.setSize(1200, 920);
 		this.setLocation(400, 50);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.addMouseListener(this);
+		for(i=0;i<15;i++){
+			for(j=0;j<15;j++){
+				zuobiao[i][j]=0;
+			}
+		}
+		run();
 	}
 
 	public boolean hengxian(int x, int y) {
 		if (zuobiao[x][y] == 1) {
-			for (i = x + 1; i < 15; i++) {
+			for (i = x + 1; i < 15&&zuobiao[i][y]==1; i++) {
 				if (zuobiao[i][y] == 1) {
 					num1++;
 				}
 			}
-			for (i = x - 1; i >= 0; i--) {
+			for (i = x - 1; i >= 0&&zuobiao[i][y]==1; i--) {
 				if (zuobiao[i][y] == 1) {
 					num1++;
 				}
@@ -76,12 +120,12 @@ class Five extends JFrame implements MouseListener {
 			num1 = 1;
 		}
 		if (zuobiao[x][y] == 2) {
-			for (i = x + 1; i < 15; i++) {
+			for (i = x + 1; i < 15&&zuobiao[i][y]==2; i++) {
 				if (zuobiao[i][y] == 2) {
 					num2++;
 				}
 			}
-			for (i = x - 1; i >= 0; i--) {
+			for (i = x - 1; i >= 0&&zuobiao[i][y]==2; i--) {
 				if (zuobiao[i][y] == 2) {
 					num2++;
 				}
@@ -96,12 +140,12 @@ class Five extends JFrame implements MouseListener {
 
 	public boolean shuxian(int x, int y) {
 		if (zuobiao[x][y] == 1) {
-			for (i = y + 1; i < 15; i++) {
+			for (i = y + 1; i < 15&&zuobiao[x][i]==1; i++) {
 				if (zuobiao[x][i] == 1) {
 					num1++;
 				}
 			}
-			for (i = y - 1; i >= 0; i--) {
+			for (i = y - 1; i >= 0&&zuobiao[x][i]==1; i--) {
 				if (zuobiao[x][i] == 1) {
 					num1++;
 				}
@@ -112,12 +156,12 @@ class Five extends JFrame implements MouseListener {
 			num1 = 1;
 		}
 		if (zuobiao[x][y] == 2) {
-			for (i = y + 1; i < 15; i++) {
+			for (i = y + 1; i < 15&&zuobiao[x][i]==2; i++) {
 				if (zuobiao[x][i] == 2) {
 					num2++;
 				}
 			}
-			for (i = y - 1; i >= 0; i--) {
+			for (i = y - 1; i >= 0&&zuobiao[x][i]==2; i--) {
 				if (zuobiao[x][i] == 2) {
 					num2++;
 				}
@@ -132,12 +176,12 @@ class Five extends JFrame implements MouseListener {
 
 	public boolean shangxie(int x, int y) {
 		if (zuobiao[x][y] == 1) {
-			for (i = x - 1, j = 1; i >= 0 && y + j < 15; i--, j++) {
+			for (i = x - 1, j = 1; i >= 0 && y + j < 15&&zuobiao[i][y+j]==1; i--, j++) {
 				if (zuobiao[i][y + j] == 1) {
 					num1++;
 				}
 			}
-			for (i = x + 1, j = 1; i < 15 && y - j >= 0; i++, j++) {
+			for (i = x + 1, j = 1; i < 15 && y - j >= 0&& y + j < 15&&zuobiao[i][y+j]==1; i++, j++) {
 				if (zuobiao[i][y - j] == 1) {
 					num1++;
 				}
@@ -148,12 +192,12 @@ class Five extends JFrame implements MouseListener {
 			num1 = 1;
 		}
 		if (zuobiao[x][y] == 2) {
-			for (i = x - 1, j = 1; i >= 0 && y + j < 15; i--, j++) {
+			for (i = x - 1, j = 1; i >= 0 && y + j < 15&& y + j < 15&&zuobiao[i][y+j]==2; i--, j++) {
 				if (zuobiao[i][y + j] == 2) {
 					num2++;
 				}
 			}
-			for (i = x + 1, j = 1; i < 15 && y - j >= 0; i++, j++) {
+			for (i = x + 1, j = 1; i < 15 && y - j >= 0&& y + j < 15&&zuobiao[i][y+j]==2; i++, j++) {
 				if (zuobiao[i][y - j] == 2) {
 					num2++;
 				}
@@ -168,12 +212,12 @@ class Five extends JFrame implements MouseListener {
 
 	public boolean xiaxie(int x, int y) {
 		if (zuobiao[x][y] == 1) {
-			for (i = x - 1, j = 1; i >= 0 && y - j >= 0; i--, j++) {
+			for (i = x - 1, j = 1; i >= 0 && y - j >= 0&&zuobiao[i][y - j] == 1; i--, j++) {
 				if (zuobiao[i][y - j] == 1) {
 					num1++;
 				}
 			}
-			for (i = x + 1, j = 1; i < 15 && y + j < 15; i++, j++) {
+			for (i = x + 1, j = 1; i < 15 && y + j < 15&&zuobiao[i][y - j] == 1; i++, j++) {
 				if (zuobiao[i][y + j] == 1) {
 					num1++;
 				}
@@ -184,12 +228,12 @@ class Five extends JFrame implements MouseListener {
 			num1 = 1;
 		}
 		if (zuobiao[x][y] == 2) {
-			for (i = x - 1, j = 1; i >= 0 && y - j >= 0; i--, j++) {
+			for (i = x - 1, j = 1; i >= 0 && y - j >= 0&&zuobiao[i][y - j] == 2; i--, j++) {
 				if (zuobiao[i][y - j] == 2) {
 					num2++;
 				}
 			}
-			for (i = x + 1, j = 1; i < 15 && y + j < 15; i++, j++) {
+			for (i = x + 1, j = 1; i < 15 && y + j < 15&&zuobiao[i][y - j] == 2; i++, j++) {
 				if (zuobiao[i][y + j] == 2) {
 					num2++;
 				}
@@ -202,50 +246,9 @@ class Five extends JFrame implements MouseListener {
 		return false;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO 自动生成的方法存根
-		getx = e.getX();
-		gety = e.getY();
-		int x = 0, y = 0;
-		if (n % 2 == 1) {
-			for (i = 0; i < 15; i++) {
-				if (getx >= (i * 60 - 10) && getx <= (50 + i * 60)) {
-					x = i;
-				}
-			}
-			for (j = 0; j < 15; j++) {
-				if (gety >= (30 + j * 60) && gety <= (90 + j * 60)) {
-					y = j;
-				}
-			}
-			if (zuobiao[x][y] == 0) {
-				zuobiao[x][y] = 1;
-				n++;
-			} else {
-
-			}
-		} else if (n % 2 == 0) {
-			for (i = 0; i < 15; i++) {
-				if (getx >= (i * 60 - 10) && getx <= (50 + i * 60)) {
-					x = i;
-				}
-			}
-			for (j = 0; j < 15; j++) {
-				if (gety >= (30 + j * 60) && gety <= (90 + j * 60)) {
-					y = j;
-				}
-			}
-			if (zuobiao[x][y] == 0) {
-				zuobiao[x][y] = 2;
-				n++;
-			} else {
-
-			}
-		}
-		this.repaint();
-		if (hengxian(x, y) || shuxian(x, y) || shangxie(x, y) || xiaxie(x, y)) {
-
+	public void judge(int x,int y,boolean b){
+		if (hengxian(x, y) || shuxian(x, y) || shangxie(x, y) || xiaxie(x, y)||b==true) {
+			win=true;
 			JFrame jf = new JFrame("游戏结束");
 			jf.setSize(600, 400);
 			jf.setLayout(new BorderLayout());
@@ -253,25 +256,112 @@ class Five extends JFrame implements MouseListener {
 			jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			jf.setVisible(true);
 			JPanel jp = new JPanel();
-			setLayout(null);
 			JTextArea text = new JTextArea(3, 3);
 			Font font = new Font("宋体", Font.BOLD, 50);
 			text.setFont(font);
-			if (n % 2 == 0) {
-				text.setText("黑棋五连，游戏结束");
-			} else {
-				text.setText("白棋五连，游戏结束");
+			
+			if (n % 2 == 0&&b==false) {
+				text.setText("  黑棋五连，游戏结束");
+			} else if(n%2==1&&b==false){
+				text.setText("  白棋五连，游戏结束");
+			}else if(n%2==0&&b==true){
+				text.setText("  黑棋超时，游戏结束");
+			}else if(n%2==1&&b==true){
+				text.setText("  白棋超时，游戏结束");
 			}
 			text.setEditable(false);
-			JButton jb1 = new JButton("重新开始");
+			Font f = new Font("行楷", Font.BOLD, 30);
 			JButton jb2 = new JButton("退出");
-			jb1.setBounds(100, 150, 50, 25);
-			jb2.setBounds(100, 150, 50, 25);
-			jp.add(jb1);
+			
+			jb2.setFont(f);
+			
+			jb2.setPreferredSize(new Dimension(200, 100));
+			
 			jp.add(jb2);
 			jf.add(text, BorderLayout.NORTH);
 			jf.add(jp, BorderLayout.SOUTH);
+			jb2.addMouseListener(new MouseListener() {
+
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO 自动生成的方法存根
+					System.exit(0);
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO 自动生成的方法存根
+
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO 自动生成的方法存根
+
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO 自动生成的方法存根
+
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO 自动生成的方法存根
+
+				}
+			});
+			
 		}
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO 自动生成的方法存根
+		getx = e.getX();
+		gety = e.getY();
+		
+		if (getx > 20 && getx < 860 && gety > 60 && gety < 900) {
+			if (n % 2 == 1) {
+				for (i = 0; i < 15; i++) {
+					if (getx >= (i * 60 - 10) && getx <= (50 + i * 60)) {
+						x = i;
+					}
+				}
+				for (j = 0; j < 15; j++) {
+					if (gety >= (30 + j * 60) && gety <= (90 + j * 60)) {
+						y = j;
+					}
+				}
+				if (zuobiao[x][y] == 0) {
+					zuobiao[x][y] = 1;
+					n++;
+					overtime=30;
+				} else {
+
+				}
+			} else if (n % 2 == 0) {
+				for (i = 0; i < 15; i++) {
+					if (getx >= (i * 60 - 10) && getx <= (50 + i * 60)) {
+						x = i;
+					}
+				}
+				for (j = 0; j < 15; j++) {
+					if (gety >= (30 + j * 60) && gety <= (90 + j * 60)) {
+						y = j;
+					}
+				}
+				if (zuobiao[x][y] == 0) {
+					zuobiao[x][y] = 2;
+					n++;
+					overtime=30;
+				} else {
+
+				}
+			}
+		}
+		this.repaint();
+		judge(x,y,false);
 	}
 
 	@Override
