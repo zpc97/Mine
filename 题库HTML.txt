@@ -103,7 +103,13 @@ color:#000;
 	padding:0 13px;
 	position:relative;
 }
-
+.T1
+{
+	font-size: 14px;
+	position: absolute;
+	top: 252px;
+	left: 370px;
+}
 #box
 {
 	width: 1000px;
@@ -144,11 +150,11 @@ color:#000;
 
 <body>
 <div id=box>
-<div>
-<table>
+  <div>
+    <table>
 <tr align="center">
 <td>
-  <img src="HTML/题库/logo.png" width="215" height="106" />
+  <img src="logo.png" width="215" height="106" />
 </td>
 <td>
   <input type="text" size="70"/>
@@ -219,12 +225,38 @@ color:#000;
 困难
 </li>
 </ul>
+</div>
+<div class="T1">
+<table border="2" bordercolor="#009900" width="500" height="200">
+<tbody>
+<tr>
+<td rowspan="3">
+1.下面____图形旋转会形成圆柱．<br /><br /><br /><br />
+<table border="1" bordercolor="#999999" width="500" height="100">
+<tbody>
+<tr>
+<td>
+A.<img src="矩形.png" width="80" height="40" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B.<img src="三角形.png" width="80" height="40" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C.<img src="五边形.png" width="80" height="40" />
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr>
+<td>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="按钮1.png" width="60" height="20" />&nbsp;<img src="按钮2.png" width="60" height="20" /></td>
+</tr>
+</tbody>
+</table>
+</td>
 
+</tr>
+</tbody>
+</table>
 </div>
 
 
 </div>
-
 </body>
 </html>
-
