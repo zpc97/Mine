@@ -110,6 +110,13 @@ color:#000;
 	top: 252px;
 	left: 370px;
 }
+.T2
+{
+	font-size: 14px;
+	position: absolute;
+	top: 455px;
+	left: 370px;
+}
 #box
 {
 	width: 1000px;
@@ -123,7 +130,7 @@ color:#000;
 	padding:5px,5px,5px,5px;
 	height:40px;
 	width:1000px;
-	background-color:#FC3;
+	background-color:#FCF;
 }
 #box2
 {
@@ -160,15 +167,18 @@ color:#000;
   <input type="text" size="70"/>
  </td>
 <td>
-<input  name="搜章节" type="submit"/>
+<button type="button" style="background-color:#0C3">搜章节
+</button>
 </td>
 </tr>
 </table>
 </div>
-
+<div>
+<hr color="#00FF66"/>
+</div>
 
 <div id=box1>
-<span class="f1">小学题库-题库天地</span> 
+<span class="f1">1、图形的变换试题 - 题库中国</span> 
 </div>
 
 <div class="DHT" id="box2">
@@ -226,6 +236,7 @@ color:#000;
 </li>
 </ul>
 </div>
+
 <div class="T1">
 <table border="2" bordercolor="#009900" width="500" height="200">
 <tbody>
@@ -237,6 +248,37 @@ color:#000;
 <tr>
 <td>
 A.<img src="矩形.png" width="80" height="40" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B.<img src="三角形.png" width="80" height="40" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C.<img src="五边形.png" width="80" height="40" />
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr>
+<td>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="按钮1.png" width="60" height="20" />&nbsp;<img src="按钮2.png" width="60" height="20" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="T2">
+<table border="2" bordercolor="#009900" width="500" height="200">
+<tbody>
+<tr>
+<td rowspan="3">
+3． 下列图片中，哪些是由图片①分别经过平移和旋转得到的____
+  <img src="题目2.png" width="400" height="60" /><br /><br /><br /><br />
+<table border="1" bordercolor="#999999" width="500" height="100">
+<tbody>
+<tr>
+<td>
+A.③和④&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B.③和②&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C.②和④&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D.④和③
 </td>
 </tr>
 </tbody>
