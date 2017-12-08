@@ -55,7 +55,7 @@ public class Testpane {
 		ResultSet rs=pst1.executeQuery();
 		rs.next();
 		int num=rs.getInt(1);
-		String sql2="use ZPC_SQL;select * from Te where Num="+num+";";
+		String sql2="use ZPC_SQL;select * from Te where Num="+num+" and Unit='"+dan+"';";
 		PreparedStatement pst2=dbcon.prepareStatement(sql2);
 		ResultSet rs2=pst2.executeQuery();
 		Label tit=new Label("                 "+gra.trim()+sub.trim()+dan+"测试题");
@@ -126,6 +126,15 @@ public class Testpane {
 			}
 			Integer score=5*truecount;
 			new Scorepane(score);
+			String sql3="use ZPC_SQL;insert into score values('"+gra+"','"+sub+"','"+dan+"',"+score+")";
+			try {
+				PreparedStatement pst3=dbcon.prepareStatement(sql3);
+				pst3.executeUpdate();
+			} catch (SQLException e1) {
+				// TODO 自动生成的 catch 块
+				e1.printStackTrace();
+			}
+			
 		});
 		
 		mainpane.getChildren().addAll(scpane,vpane);

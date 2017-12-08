@@ -2,6 +2,7 @@ package javabighomework;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import javafx.animation.FadeTransition;
@@ -112,10 +113,26 @@ public class Signpane extends Application{
 			new Registerpane();
 		});
 		signbutton.setOnAction(e->{
-			action();
+			try {
+				action();
+			} catch (ClassNotFoundException e1) {
+				// TODO 自动生成的 catch 块
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				// TODO 自动生成的 catch 块
+				e1.printStackTrace();
+			}
 		});
 		passtext.setOnAction(e->{
-			action();
+			try {
+				action();
+			} catch (ClassNotFoundException e1) {
+				// TODO 自动生成的 catch 块
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				// TODO 自动生成的 catch 块
+				e1.printStackTrace();
+			}
 		});
 		Scene mainscene=new Scene(mainpane,400,300);
 		signStage.setScene(mainscene);
@@ -123,7 +140,7 @@ public class Signpane extends Application{
 		signStage.setResizable(false);
 		signStage.show();
 	}
-	public void action(){
+	public void action() throws ClassNotFoundException, SQLException{
 		sign=signtext.getText();
 		pass=passtext.getText();
 		File file=new File(sign+".txt");

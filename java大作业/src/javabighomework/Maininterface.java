@@ -3,6 +3,10 @@ package javabighomework;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -29,14 +33,21 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 public class Maininterface{
+	String driverName="com.microsoft.sqlserver.jdbc.SQLServerDriver";
+	String dbURL="jdbc:sqlserver://localhost:1433;DatabaseName=ZPC_SQL";
+	String userName="ZPC1997";
+	String userPwd="zpc534324239";
 	String name;
 	int n1=1,n2=1;
 	private Stage primarystage=new Stage();
 	private VBox vBox_main =new VBox();//主面板
 	private StackPane stackPane_up=new StackPane();//上部面板
 	private StackPane stackPane_down=new StackPane();//下部面板
-	public Maininterface(String n){
+	public Maininterface(String n) throws ClassNotFoundException, SQLException{
 		/*将上部面板和下部面板加入主面板中，且进行宽和高的绑定*/
+		
+		
+		
 		name=n;
 		vBox_main.getChildren().addAll(stackPane_up,stackPane_down);
 		stackPane_up.prefWidthProperty().bind(vBox_main.widthProperty());
@@ -82,7 +93,15 @@ public class Maininterface{
 		/*学习按钮事件*/
 		button_study.setOnAction(e->{
 			stackPane_up.getChildren().clear();//清空上部面板
-			stackPane_up.getChildren().add(studypage());//将上部面板中添加学习面板
+			try {
+				stackPane_up.getChildren().add(studypage());
+			} catch (ClassNotFoundException e1) {
+				// TODO 自动生成的 catch 块
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				// TODO 自动生成的 catch 块
+				e1.printStackTrace();
+			}//将上部面板中添加学习面板
 		});
 		
 		/*我按钮事件*/
@@ -220,8 +239,26 @@ public class Maininterface{
 		return pane;
 	}
 	/*返回一个学习面板*/
-	public Pane studypage() {
-		Pane pane=new Pane(new Label("学习记录"));
+	public Pane studypage() throws SQLException, ClassNotFoundException {
+		Class.forName(driverName);
+		Connection dbcon=DriverManager.getConnection(dbURL,userName,userPwd);
+		Pane pane=new Pane();
+		VBox vpane=new VBox();
+		Label label=new Label("                        学习记录");
+		label.setTextFill(Color.BLUE);
+		label.setFont(new Font(20));
+		vpane.getChildren().add(label);
+		
+		pane.getChildren().add(vpane);
+		String sql="use ZPC_SQL;select * from score;";
+		PreparedStatement pst=dbcon.prepareStatement(sql);
+		ResultSet rs=pst.executeQuery();
+		Integer i=1;
+		while(rs.next()){
+			vpane.getChildren().add(new Label(i.toString()+". "+rs.getString(1).trim()+rs.getString(2).trim()+
+					rs.getString(3).trim()+"        成绩:"+rs.getString(4)));
+			i++;
+		}
 		return pane;
 	}
 	/*返回一个我面板*/
